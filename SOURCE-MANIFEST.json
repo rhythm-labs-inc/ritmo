@@ -42,7 +42,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "66688a6f971f3d6cf1b9ccd1680c0ffd6b3d5f4cadd9974f9fa1fb02cefaf02d"
+      "sha256": "c778bcb12cd0e91b49ef9e5f2eb6f9a7dd6b23d5f406a781ba2ce0fd65318754"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -78,7 +78,7 @@
     },
     {
       "path": "docs/agents.md",
-      "sha256": "8f36d8ae1f85a059ed1695e1d26890c4be3930bc2b2edf82dbcba25884279fce"
+      "sha256": "a4fdbe09403bfb0c2b11953b165073c696dc196dfdc94cd819ae51e0ae462a13"
     },
     {
       "path": "docs/apps-sdk-contract.md",
@@ -134,7 +134,7 @@
     },
     {
       "path": "docs/installation.md",
-      "sha256": "cd42d9984bf858161c7bcbf191f4f8b2cd8702997de7ca64f8813846e8f15fc5"
+      "sha256": "255ae510db8c580df7e58ea77fd9a10fd3e0cf9965adb3601506cde133c04611"
     },
     {
       "path": "docs/migration.md",
@@ -142,7 +142,7 @@
     },
     {
       "path": "docs/releasing.md",
-      "sha256": "c5c984a40a9bf54db7778c3b4f0032d60bdde2c7ed15ce5379ab84625b09416f"
+      "sha256": "23a1fd4d4f31361c69b9fa49e0416a91d76babe892ea5a368a36d54cc828ba33"
     },
     {
       "path": "docs/simulation.md",
