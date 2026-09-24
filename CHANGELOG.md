@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0-rc.1 — in preparation
+## 0.2.0-rc.1 — 2026-09-24 (prerelease)
 
 Published on [npm](https://www.npmjs.com/package/@rhythm-labs-inc/ritmo) as `@rhythm-labs-inc/ritmo@0.2.0-rc.1`, with a [GitHub prerelease](https://github.com/rhythm-labs-inc/ritmo/releases/tag/v0.2.0-rc.1). See the [installation guide](docs/installation.md#install-the-release-candidate).
 

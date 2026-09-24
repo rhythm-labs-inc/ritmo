@@ -42,7 +42,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "2176f12498677936cdf7d652a156d1e93dea998e6ed5de628928c318b4ac94f4"
+      "sha256": "f013f15f1b707b97a5fa70cc6ca5e29fb35da2430acbe23f1e3377d3dff90c0e"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -134,7 +134,7 @@
     },
     {
       "path": "docs/installation.md",
-      "sha256": "c19af6b3ccd721aa16d1f183b1db32dddb845142f2b7bca70c8472d3be101f7a"
+      "sha256": "9384bb82984f0d31cfadec867cf0d04bec9596f3ddf8da2d63b5f335075d6cee"
     },
     {
       "path": "docs/migration.md",

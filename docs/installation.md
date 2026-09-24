@@ -19,9 +19,11 @@ At publication, both `next` and `latest` resolve to this release candidate. Pin 
 
 **Build and link the CLI**
 
-From the checkout root:
+Clone the public repository and build from its root:
 
 ```bash
+git clone https://github.com/rhythm-labs-inc/ritmo.git
+cd ritmo
 npm ci
 npm run build:all
 npm link
