@@ -1,0 +1,50 @@
+/* Ritmo design tokens v0.1 — dark is canonical. */
+:root {
+  --ritmo-canvas: #0D1110;
+  --ritmo-raised: #141918;
+  --ritmo-overlay: #1A211F;
+  --ritmo-terminal: #0A0D0C;
+  --ritmo-line: #2A3331;
+  --ritmo-line-strong: #384341;
+  --ritmo-line-faint: #1E2523;
+
+  --ritmo-text: #E8EDEB;
+  --ritmo-text-soft: #C5CDCA;
+  --ritmo-text-muted: #8E9A97;
+  --ritmo-text-dim: #5F6B68;
+
+  --ritmo-forest: #26423C;
+  --ritmo-forest-lift: #35695A;
+  --ritmo-signal: #4FBF95;
+  --ritmo-signal-hi: #7FE0BA;
+  --ritmo-terracotta: #BC5533;
+  --ritmo-terracotta-hi: #E0703F;
+  --ritmo-cream: #F6F2EB;
+
+  --ritmo-pass: #4FBF95;
+  --ritmo-warn: #E0B341;
+  --ritmo-fail: #D9503F;
+  --ritmo-info: #6C8FB8;
+
+  --ritmo-l-canvas: #FAF9F7;
+  --ritmo-l-surface: #FFFFFF;
+
+  --ritmo-font-sans: 'Public Sans', system-ui, sans-serif;
+  --ritmo-font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --ritmo-text-body: 16px;
+  --ritmo-text-sm: 14px;
+  --ritmo-text-mono: 13.5px;
+  --ritmo-text-label: 11px;
+
+  --ritmo-space-xs: 4px;
+  --ritmo-space-sm: 8px;
+  --ritmo-space-md: 16px;
+  --ritmo-space-lg: 24px;
+  --ritmo-space-xl: 32px;
+
+  --ritmo-radius-sm: 6px;
+  --ritmo-radius-md: 8px;
+  --ritmo-radius-lg: 12px;
+  --ritmo-transition: 150ms ease;
+}

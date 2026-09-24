@@ -1,0 +1,132 @@
+{
+  "name": "@rhythm-labs-inc/ritmo",
+  "version": "0.2.0-rc.1",
+  "description": "Inspect, validate and simulate MCP apps locally.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Rhythm Labs Inc.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhythm-labs-inc/ritmo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rhythm-labs-inc/ritmo/issues"
+  },
+  "engines": {
+    "node": ">=22.23.2"
+  },
+  "bin": {
+    "ritmo": "./bin/run.js",
+    "apprhythm": "./bin/run.js"
+  },
+  "exports": {
+    ".": "./dist/lib/core/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "dist-ui",
+    "schemas/ritmo-plugin-blueprint-v1.schema.json",
+    "examples",
+    "docs",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "CHANGELOG.md",
+    "RELEASE-CONTENTS.json",
+    "CONTRIBUTING.md",
+    "SUPPORT.md",
+    "SECURITY.md"
+  ],
+  "oclif": {
+    "bin": "ritmo",
+    "dirname": "ritmo",
+    "theme": {
+      "alias": "#8E9A97",
+      "bin": "#6C8FB8",
+      "command": "#6C8FB8",
+      "commandSummary": "#8E9A97",
+      "dollarSign": "#4FBF95",
+      "flag": "#6C8FB8",
+      "flagDefaultValue": "#8E9A97",
+      "flagOptions": "#6C8FB8",
+      "flagRequired": "#E0703F",
+      "flagSeparator": "#8E9A97",
+      "json": {
+        "boolean": "#E0703F",
+        "brace": "#8E9A97",
+        "bracket": "#8E9A97",
+        "key": "#8E9A97",
+        "null": "#E0703F",
+        "number": "#E0703F",
+        "string": "#7FE0BA"
+      },
+      "sectionDescription": "#8E9A97",
+      "sectionHeader": "#8E9A97",
+      "spinner": "#4FBF95",
+      "topic": "#6C8FB8",
+      "version": "#8E9A97"
+    },
+    "commands": {
+      "strategy": "pattern",
+      "target": "./dist/commands"
+    },
+    "topicSeparator": " ",
+    "helpClass": "./dist/lib/cli/help.js"
+  },
+  "scripts": {
+    "preinstall": "node bin/check-node.js",
+    "build": "tsc -b",
+    "build:ui": "vite build",
+    "build:all": "npm run build && npm run build:ui",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "example": "node examples/notes/server.mjs",
+    "verify:boundary": "node scripts/verify-boundary.mjs",
+    "verify:consumer": "node scripts/verify-consumer.mjs",
+    "verify:docs": "node scripts/verify-docs.mjs",
+    "ci:quality": "npm run build:all && npm test && npm run lint && npm run verify:docs && npm run verify:boundary && npm run verify:consumer",
+    "prepack": "npm run build:all && npm run verify:boundary"
+  },
+  "dependencies": {
+    "@fastify/static": "^10.1.3",
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "@oclif/core": "^4",
+    "fastify": "^5.7.4",
+    "js-yaml": "^4.1.0",
+    "keytar": "^7.9.0",
+    "open": "11.0.0",
+    "openai": "^6.22.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@oclif/test": "^4",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.4",
+    "eslint": "^10.0.1",
+    "oclif": "^4",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-markdown": "10.1.0",
+    "remark-gfm": "4.0.1",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.56.0",
+    "vite": "^7.3.1",
+    "vitest": "^4.1.11"
+  },
+  "keywords": [
+    "mcp",
+    "cli",
+    "ritmo",
+    "chatgpt",
+    "testing"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,3 @@
+suite: broken yaml
+  tests:
+    - [bad indentation

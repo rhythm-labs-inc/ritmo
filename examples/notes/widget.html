@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ritmo notes</title>
+<style>:root{color-scheme:dark;--bg:#141918;--text:#e8edeb;--muted:#c5cdca;--subtle:#8e9a97;--accent:#7fe0ba;--border:#384341}:root[data-theme="light"]{color-scheme:light;--bg:#fff;--text:#18241f;--muted:#45554d;--subtle:#52655b;--accent:#166344;--border:#d6e2db}body{margin:0;padding:24px;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,sans-serif}h1{font-size:19px;margin:0 0 16px}article{padding:14px 0;border-top:1px solid var(--border)}h2{font-size:15px;margin:0 0 4px;color:var(--accent)}p{margin:0;color:var(--muted)}.label{font-size:11px;letter-spacing:.1em;color:var(--subtle);text-transform:uppercase;margin-bottom:8px}</style></head>
+<body><div class="label">Local MCP example</div><h1>Your notes</h1><main id="notes"><p>Waiting for the tool result…</p></main>
+<script>
+// Host context theme and tool-result messages: see docs/apps-sdk-contract.md §3–§4.
+// Keep the host's clipping height current, including mobile text wrapping (§4).
+let initialized = false
+const resize = () => {if(initialized)parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/size-changed',params:{height:Math.ceil(document.body.getBoundingClientRect().height)}},'*')}
+new ResizeObserver(resize).observe(document.body)
+const theme = (value) => {if(value==='light'||value==='dark')document.documentElement.dataset.theme=value}
+const render = (data) => {
+  const notes = data?.notes ?? data?.structuredContent?.notes
+  if (!Array.isArray(notes)) return
+  const root = document.getElementById('notes'); root.replaceChildren()
+  if (!notes.length) {const empty=document.createElement('p');empty.textContent='No notes yet. Create a note to get started.';root.append(empty)}
+  for (const note of notes) {const item=document.createElement('article'),title=document.createElement('h2'),body=document.createElement('p');title.textContent=note.title;body.textContent=note.body;item.append(title,body);root.append(item)}
+}
+if (window.openai) {theme(window.openai.theme);render(window.openai.toolOutput)}
+window.addEventListener('openai:set_globals', (event) => {theme(event.detail?.globals?.theme);render(event.detail?.globals?.toolOutput)})
+window.addEventListener('message', (event) => {if(event.source!==parent)return;if(event.data?.id==='notes-initialize'&&event.data.result){initialized=true;theme(event.data.result.hostContext?.theme);requestAnimationFrame(resize);parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/initialized',params:{}},'*')}if(event.data?.method==='ui/notifications/host-context-changed')theme(event.data.params?.theme);if(event.data?.method==='ui/notifications/tool-result')render(event.data.params)})
+parent.postMessage({jsonrpc:'2.0',id:'notes-initialize',method:'ui/initialize',params:{appInfo:{name:'Ritmo notes',version:'1.0.0'},appCapabilities:{},protocolVersion:'2026-01-26'}},'*')
+</script></body></html>

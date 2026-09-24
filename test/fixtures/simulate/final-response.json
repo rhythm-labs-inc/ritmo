@@ -1,0 +1,14 @@
+{
+  "id": "chatcmpl-test3",
+  "object": "chat.completion",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "The weather in New York is 72°F and sunny."
+      },
+      "finish_reason": "stop"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+suite: "Failing assertion tests"
+tests:
+  - name: "Wrong tool expectation"
+    user: "Say hello"
+    expect_tool: "nonexistent_tool"
+  - name: "Wrong response content"
+    user: "Say hello"
+    assert_response_contains: "xyzzy_this_will_never_appear_in_any_response"

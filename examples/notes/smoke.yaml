@@ -1,0 +1,6 @@
+suite: Notes smoke check
+tests:
+  - name: List the synthetic notes
+    user: Show me my notes.
+    tools_called: [list_notes]
+    assert_contract: clean

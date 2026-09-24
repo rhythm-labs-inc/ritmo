@@ -1,0 +1,92 @@
+$ ritmo inspect examples/notes/ritmo.yaml
+Inspect: $RITMO_SOURCE/examples/notes/ritmo.yaml
+Read-only view · sensitive fields redacted · integrity not verified
+
+Document
+  version:
+    1
+  app
+    name:
+      Ritmo Notes
+    description:
+      Read two synthetic notes in the local Ritmo example.
+    icon:
+      ./icon.svg
+    screenshots: (empty)
+
+  server
+    url:
+      http://127.0.0.1:2091/mcp
+
+  simulate
+    model:
+      gpt-4o-mini
+    default_context
+      locale:
+        en-US
+      timezone:
+        UTC
+
+  tests
+    [0]
+      file:
+        ./smoke.yaml
+
+  > Next step: ritmo inspect --help
+
+$ ritmo mcp --server "$MCP_URL" --list-tools
+ritmo · Connect: Connecting to MCP server
+  Discover: Discovering tools
+  Ritmo notes example / local discovery
+  Connect: complete
+  Discover: complete
+  Test: not run
+  Package: not run
+
+  Your app, at a glance.
+
+  Found 1 tool · 1 referenced widget · connection verified
+
+
+  1 › list_notes                                                 READ · WIDGET
+   Read the synthetic example notes. This only retrieves local fixture data and makes no changes.
+   Server-declared capabilities · widget reference is not a render check
+   Widget: ui://notes/list.html
+    {
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "idempotentHint": true
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    }
+
+  ────────────────────────────────────────────────────────────────────────────
+
+  > Next step: ritmo validate --help
+
+$ ritmo validate --server "$MCP_URL" --host mcp-apps --no-probe --json
+{
+  "summary": {
+    "fail": 0,
+    "warn": 1,
+    "info": 4,
+    "pass": 24
+  }
+}
+exit: 0
+$ # Restart example with --broken; repeat validation
+{
+  "rule": "directory/title-and-hints",
+  "severity": "fail",
+  "target": "list_notes",
+  "source": "§9",
+  "message": "no applicable hint (readOnlyHint: true for read tools, destructiveHint for write tools)",
+  "hint": "These drive auto-permissions in Claude: read-only tools run without per-call confirmation; destructive tools always prompt."
+}
+exit: 1

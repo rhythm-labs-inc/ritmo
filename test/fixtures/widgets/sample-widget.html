@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Sample Widget</title>
+  <style>
+    body { font-family: sans-serif; padding: 16px; }
+    button { padding: 8px 16px; margin: 4px; }
+  </style>
+</head>
+<body>
+  <h2>Sample Widget</h2>
+  <p id="status">Ready</p>
+  <button id="call-tool" onclick="callTool()">Call Tool</button>
+  <button id="follow-up" onclick="sendFollowUp()">Send Follow-up</button>
+  <button id="close" onclick="requestClose()">Close</button>
+
+  <script>
+    function callTool() {
+      window.parent.postMessage({
+        jsonrpc: '2.0',
+        id: 'call-1',
+        method: 'tools/call',
+        params: { name: 'search', arguments: { query: 'test' } }
+      }, '*');
+      document.getElementById('status').textContent = 'Tool called';
+    }
+
+    function sendFollowUp() {
+      window.parent.postMessage({
+        jsonrpc: '2.0',
+        id: 'follow-1',
+        method: 'ui/sendFollowUpMessage',
+        params: { prompt: 'What happened next?' }
+      }, '*');
+    }
+
+    function requestClose() {
+      window.parent.postMessage({
+        jsonrpc: '2.0',
+        id: 'close-1',
+        method: 'ui/requestClose',
+        params: {}
+      }, '*');
+    }
+  </script>
+</body>
+</html>

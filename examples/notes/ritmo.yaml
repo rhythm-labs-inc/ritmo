@@ -1,0 +1,13 @@
+version: 1
+app:
+  name: Ritmo Notes
+  description: Read two synthetic notes in the local Ritmo example.
+  icon: ./icon.svg
+  screenshots: []
+server:
+  url: http://127.0.0.1:2091/mcp
+simulate:
+  model: gpt-4o-mini
+  default_context: {locale: en-US, timezone: UTC}
+tests:
+  - file: ./smoke.yaml

@@ -1,0 +1,436 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ritmo.dev/schemas/plugin-blueprint-v1.schema.json",
+  "title": "Ritmo Plugin Blueprint v1",
+  "description": "Canonical, secret-free project input for Ritmo framework evaluation. The runtime Zod schema is authoritative for semantic validation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "intent",
+    "product_contract",
+    "data_security",
+    "identity",
+    "quality",
+    "delivery",
+    "review_evidence",
+    "policy_provenance"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "id": {"$ref": "#/$defs/identifier"},
+    "revision": {"$ref": "#/$defs/nonEmpty"},
+    "intent": {"$ref": "#/$defs/intent"},
+    "product_contract": {"$ref": "#/$defs/productContract"},
+    "data_security": {"$ref": "#/$defs/dataSecurity"},
+    "identity": {"$ref": "#/$defs/identity"},
+    "quality": {"$ref": "#/$defs/quality"},
+    "delivery": {"$ref": "#/$defs/delivery"},
+    "review_evidence": {"$ref": "#/$defs/reviewEvidence"},
+    "policy_provenance": {"$ref": "#/$defs/policyProvenance"}
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{0,62}$"
+    },
+    "policyRuleId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9/_-]{0,127}$"
+    },
+    "nonEmpty": {"type": "string", "minLength": 1},
+    "httpUrl": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https?://"
+    },
+    "credentialReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "locator"],
+      "properties": {
+        "kind": {"enum": ["environment", "keychain", "secret-manager", "short-lived-handle"]},
+        "locator": {"$ref": "#/$defs/nonEmpty"}
+      }
+    },
+    "intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["owner", "audience", "use_cases", "business_model", "exclusions"],
+      "properties": {
+        "owner": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "kind"],
+          "properties": {
+            "name": {"$ref": "#/$defs/nonEmpty"},
+            "kind": {"enum": ["individual", "organization", "team"]},
+            "contact": {"type": "string", "format": "email"}
+          }
+        },
+        "audience": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonEmpty"}},
+        "use_cases": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "description", "success_measure"],
+            "properties": {
+              "id": {"$ref": "#/$defs/identifier"},
+              "description": {"$ref": "#/$defs/nonEmpty"},
+              "success_measure": {"$ref": "#/$defs/nonEmpty"}
+            }
+          }
+        },
+        "business_model": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["model", "description"],
+          "properties": {
+            "model": {"enum": ["free", "subscription", "usage-based", "services", "internal", "other"]},
+            "description": {"$ref": "#/$defs/nonEmpty"}
+          }
+        },
+        "exclusions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonEmpty"}}
+      }
+    },
+    "productContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tools", "supported_hosts"],
+      "properties": {
+        "tools": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "description", "input_schema"],
+            "properties": {
+              "name": {"$ref": "#/$defs/identifier"},
+              "title": {"$ref": "#/$defs/nonEmpty"},
+              "description": {"$ref": "#/$defs/nonEmpty"},
+              "input_schema": {"type": "object"},
+              "output_schema": {"type": "object"},
+              "annotations": {"type": "object"}
+            }
+          }
+        },
+        "ui_resources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["uri"],
+            "properties": {
+              "uri": {"$ref": "#/$defs/nonEmpty"},
+              "description": {"$ref": "#/$defs/nonEmpty"},
+              "mime_type": {"$ref": "#/$defs/nonEmpty"}
+            }
+          }
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "source"],
+            "properties": {
+              "name": {"$ref": "#/$defs/identifier"},
+              "source": {"$ref": "#/$defs/nonEmpty"}
+            }
+          }
+        },
+        "supported_hosts": {"type": "array", "minItems": 1, "items": {"enum": ["chatgpt", "mcp-apps"]}}
+      }
+    },
+    "dataSecurity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["data_classification"],
+      "properties": {
+        "data_classification": {"type": "array", "minItems": 1, "items": {"enum": ["public", "internal", "confidential", "restricted"]}},
+        "integrations": {"type": "array", "items": {"$ref": "#/$defs/integration"}},
+        "permissions": {"type": "array", "items": {"$ref": "#/$defs/namedDescription"}},
+        "sensitive_actions": {"type": "array", "items": {"$ref": "#/$defs/sensitiveAction"}},
+        "egress_boundaries": {"type": "array", "items": {"$ref": "#/$defs/egressBoundary"}}
+      }
+    },
+    "integration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "description"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "kind": {"enum": ["api", "database", "dataset", "website", "identity-provider", "other"]},
+        "description": {"$ref": "#/$defs/nonEmpty"},
+        "credential_references": {"type": "array", "items": {"$ref": "#/$defs/credentialReference"}}
+      }
+    },
+    "namedDescription": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "description"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "description": {"$ref": "#/$defs/nonEmpty"}
+      }
+    },
+    "sensitiveAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "description", "requires_confirmation"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "description": {"$ref": "#/$defs/nonEmpty"},
+        "requires_confirmation": {"type": "boolean"}
+      }
+    },
+    "egressBoundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["destination", "purpose"],
+      "properties": {
+        "destination": {"$ref": "#/$defs/httpUrl"},
+        "purpose": {"$ref": "#/$defs/nonEmpty"}
+      }
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authentication", "entitlement_model", "account_states"],
+      "properties": {
+        "authentication": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["pattern"],
+          "properties": {
+            "pattern": {"enum": ["none", "api-key", "oauth", "session", "custom"]},
+            "credential_references": {"type": "array", "items": {"$ref": "#/$defs/credentialReference"}}
+          }
+        },
+        "scopes": {"type": "array", "items": {"$ref": "#/$defs/nonEmpty"}},
+        "entitlement_model": {"$ref": "#/$defs/nonEmpty"},
+        "test_accounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "account_state"],
+            "properties": {
+              "id": {"$ref": "#/$defs/identifier"},
+              "account_state": {"$ref": "#/$defs/nonEmpty"},
+              "credential_reference": {"$ref": "#/$defs/credentialReference"}
+            }
+          }
+        },
+        "account_states": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonEmpty"}}
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evaluation", "interaction_tests"],
+      "properties": {
+        "evaluation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["model", "locale", "timezone"],
+          "properties": {
+            "model": {"$ref": "#/$defs/nonEmpty"},
+            "locale": {"$ref": "#/$defs/nonEmpty"},
+            "timezone": {"$ref": "#/$defs/nonEmpty"}
+          }
+        },
+        "interaction_tests": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/interactionTest"}},
+        "contract_checks": {"type": "array", "items": {"$ref": "#/$defs/nonEmpty"}},
+        "golden_prompts": {"type": "array", "items": {"$ref": "#/$defs/goldenPrompt"}}
+      }
+    },
+    "interactionTest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "class", "prompt", "expected_outcome"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "class": {"enum": ["direct", "indirect", "negative", "multi-turn", "identity", "contract", "golden-prompt"]},
+        "prompt": {"$ref": "#/$defs/nonEmpty"},
+        "expected_outcome": {"$ref": "#/$defs/nonEmpty"},
+        "expected_tools": {"type": "array", "items": {"$ref": "#/$defs/identifier"}},
+        "assert_response_contains": {"$ref": "#/$defs/nonEmpty"},
+        "assert_contract": {"enum": ["clean", "no-fail"]},
+        "identity": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "subject": {"$ref": "#/$defs/nonEmpty"},
+            "session": {"enum": ["same", "new"]},
+            "none": {"const": true}
+          }
+        }
+      }
+    },
+    "goldenPrompt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "prompt", "expected_tool_behavior"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "prompt": {"$ref": "#/$defs/nonEmpty"},
+        "expected_tool_behavior": {"$ref": "#/$defs/nonEmpty"}
+      }
+    },
+    "delivery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "environments", "rollback"],
+      "properties": {
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "locator"],
+          "properties": {
+            "kind": {"enum": ["repository", "archive", "manual"]},
+            "locator": {"$ref": "#/$defs/nonEmpty"},
+            "revision": {"$ref": "#/$defs/nonEmpty"}
+          }
+        },
+        "environments": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "deploy_target", "server_url"],
+            "properties": {
+              "name": {"$ref": "#/$defs/identifier"},
+              "deploy_target": {"$ref": "#/$defs/nonEmpty"},
+              "server_url": {"$ref": "#/$defs/httpUrl"},
+              "region": {"$ref": "#/$defs/nonEmpty"},
+              "secret_references": {"type": "array", "items": {"$ref": "#/$defs/credentialReference"}}
+            }
+          }
+        },
+        "rollback": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["strategy"],
+          "properties": {
+            "strategy": {"$ref": "#/$defs/nonEmpty"},
+            "reference": {"$ref": "#/$defs/nonEmpty"}
+          }
+        }
+      }
+    },
+    "reviewEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["listing", "real_host_result"],
+      "properties": {
+        "listing": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "description", "icon"],
+          "properties": {
+            "name": {"$ref": "#/$defs/nonEmpty"},
+            "description": {"$ref": "#/$defs/nonEmpty"},
+            "icon": {"$ref": "#/$defs/nonEmpty"},
+            "subtitle": {"$ref": "#/$defs/nonEmpty"},
+            "privacy_policy_url": {"$ref": "#/$defs/httpUrl"},
+            "terms_url": {"$ref": "#/$defs/httpUrl"},
+            "company_url": {"$ref": "#/$defs/httpUrl"},
+            "support_url": {"$ref": "#/$defs/httpUrl"}
+          }
+        },
+        "screenshots": {"type": "array", "items": {"$ref": "#/$defs/nonEmpty"}},
+        "demo_access": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["instructions"],
+          "properties": {
+            "instructions": {"$ref": "#/$defs/nonEmpty"},
+            "credential_references": {"type": "array", "items": {"$ref": "#/$defs/credentialReference"}}
+          }
+        },
+        "reviewer_cases": {"type": "array", "items": {"$ref": "#/$defs/reviewerCase"}},
+        "real_host_result": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status"],
+          "properties": {
+            "status": {"enum": ["not-run", "passed", "failed", "not-applicable"]},
+            "reference": {"$ref": "#/$defs/nonEmpty"},
+            "evaluated_at": {"type": "string", "format": "date-time"},
+            "provenance": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["attestation", "evidence_date", "source_revision", "host_version", "retained_artifacts"],
+              "properties": {
+                "attestation": {"enum": ["automated", "reviewer-attested", "user-attested"]},
+                "evidence_date": {"type": "string", "format": "date"},
+                "source_revision": {"$ref": "#/$defs/nonEmpty"},
+                "host_version": {"$ref": "#/$defs/nonEmpty"},
+                "retained_artifacts": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["screenshots", "transcript"],
+                  "properties": {
+                    "screenshots": {"type": "boolean"},
+                    "transcript": {"type": "boolean"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reviewerCase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "prompt", "expected_outcome"],
+      "properties": {
+        "id": {"$ref": "#/$defs/identifier"},
+        "prompt": {"$ref": "#/$defs/nonEmpty"},
+        "expected_outcome": {"$ref": "#/$defs/nonEmpty"}
+      }
+    },
+    "policyProvenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bundle", "rules"],
+      "properties": {
+        "bundle": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "version"],
+          "properties": {
+            "id": {"$ref": "#/$defs/identifier"},
+            "version": {"$ref": "#/$defs/nonEmpty"},
+            "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+          }
+        },
+        "rules": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "source", "verified_at", "confidence", "applicability", "implementation_version"],
+            "properties": {
+              "id": {"$ref": "#/$defs/policyRuleId"},
+              "source": {"$ref": "#/$defs/httpUrl"},
+              "verified_at": {"type": "string", "format": "date-time"},
+              "confidence": {"enum": ["verified", "inferred", "unverified"]},
+              "applicability": {"enum": ["applies", "does-not-apply", "uncertain"]},
+              "implementation_version": {"$ref": "#/$defs/nonEmpty"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

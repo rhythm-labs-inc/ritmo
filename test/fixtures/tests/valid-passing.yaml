@@ -1,0 +1,7 @@
+suite: "Passing smoke tests"
+tests:
+  - name: "Basic response check"
+    user: "Say hello"
+    assert_response_contains: "hello"
+  - name: "No assertions test"
+    user: "What is 2+2?"

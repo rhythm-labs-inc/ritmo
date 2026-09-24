@@ -1,0 +1,66 @@
+{
+  "description": "Fixture data for bridge interaction tests",
+  "toolCallRequest": {
+    "jsonrpc": "2.0",
+    "id": "tc-1",
+    "method": "tools/call",
+    "params": {
+      "name": "search",
+      "arguments": { "query": "test query" }
+    }
+  },
+  "setWidgetStateRequest": {
+    "jsonrpc": "2.0",
+    "id": "sw-1",
+    "method": "ui/setWidgetState",
+    "params": {
+      "state": { "selectedItem": "item-42", "count": 3 }
+    }
+  },
+  "displayModeRequest": {
+    "jsonrpc": "2.0",
+    "id": "dm-1",
+    "method": "ui/requestDisplayMode",
+    "params": { "mode": "fullscreen" }
+  },
+  "followUpRequest": {
+    "jsonrpc": "2.0",
+    "id": "fu-1",
+    "method": "ui/sendFollowUpMessage",
+    "params": { "prompt": "Tell me more about this" }
+  },
+  "closeRequest": {
+    "jsonrpc": "2.0",
+    "id": "cl-1",
+    "method": "ui/requestClose",
+    "params": {}
+  },
+  "openExternalRequest": {
+    "jsonrpc": "2.0",
+    "id": "oe-1",
+    "method": "ui/openExternal",
+    "params": { "href": "https://docs.example.com" }
+  },
+  "unsupportedRequest": {
+    "jsonrpc": "2.0",
+    "id": "un-1",
+    "method": "ui/uploadFile",
+    "params": {}
+  },
+  "toolOutputWithWidget": {
+    "result": "success",
+    "_meta": {
+      "openai/outputTemplate": "<div><h1>Widget Content</h1><button onclick=\"doAction()\">Click me</button></div>"
+    }
+  },
+  "toolOutputWithWidgetUrl": {
+    "result": "success",
+    "_meta": {
+      "widgetUrl": "http://localhost:3000/widget"
+    }
+  },
+  "toolOutputNoWidget": {
+    "result": "plain text result",
+    "_meta": {}
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "states": {
+    "intro": {
+      "toolOutput": {
+        "phase": "building",
+        "step": 1,
+        "total": 3,
+        "values": {}
+      },
+      "toolResponseMetadata": {
+        "sessionToken": "sess-demo-0001"
+      }
+    },
+    "card-3": {
+      "toolOutput": {
+        "phase": "building",
+        "step": 3,
+        "total": 3,
+        "values": {
+          "card1": 20,
+          "card2": 80
+        }
+      }
+    },
+    "complete": {
+      "toolOutput": {
+        "phase": "complete",
+        "values": {
+          "card1": 20,
+          "card2": 80,
+          "card3": 55
+        }
+      }
+    }
+  },
+  "tools": {
+    "demo_save_card": {
+      "content": [],
+      "structuredContent": {
+        "phase": "building",
+        "step": 2,
+        "total": 3,
+        "values": {
+          "card1": 42
+        }
+      }
+    }
+  },
+  "toolName": "demo_start"
+}

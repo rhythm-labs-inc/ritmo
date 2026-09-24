@@ -1,0 +1,8 @@
+{
+  "states": {
+    "notes": {"toolOutput": {"notes": [{"id": "1", "title": "Try an MCP tool", "body": "These notes are synthetic fixtures."}, {"id": "2", "title": "Inspect a widget", "body": "No account or model call is needed for this example."}]}},
+    "empty": {"toolOutput": {"notes": []}}
+  },
+  "tools": {},
+  "toolName": "list_notes"
+}

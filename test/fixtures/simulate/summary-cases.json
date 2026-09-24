@@ -1,0 +1,104 @@
+[
+  {
+    "id": "feedback-caution",
+    "prompt": "Search for onboarding or activation advice. Return two source titles and one brief takeaway from each, using only the search snippets.",
+    "results": [
+      {
+        "title": "Protecting the core onboarding experience",
+        "source_url": "https://example.com/core-onboarding",
+        "snippet": "...they say the product is merely nice to have. If you reshape onboarding around feedback from these occasional users, you may make the experience less useful for the people who depend on it. Host: Can onboarding improve retention? Guest: Often the problem is getting the right users to the right experience, rather than adding isolated retention tricks. Host: Which activation tactics should teams try? Guest: In my experience..."
+      },
+      {
+        "title": "The first useful session",
+        "source_url": null,
+        "snippet": "Host: How do teams help new users find value? Guest: Early activation matters: focus on the first session. Host: Which three changes work best? Guest: The first one is..."
+      }
+    ],
+    "review": [
+      "The first takeaway must not recommend following user feedback generally; if it discusses feedback, retain the occasional-user scope and possible harm to core users.",
+      "A narrower takeaway about getting the right users to the right experience is supported; it need not repeat every snippet detail.",
+      "The second source supports the importance of early activation, but no specific tactics are supplied.",
+      "Keep the first URL with the first source; do not invent a URL for the second."
+    ]
+  },
+  {
+    "id": "conditional-recommendation",
+    "prompt": "Search for onboarding rollout advice. Give one brief recommendation based only on the snippet.",
+    "results": [
+      {
+        "title": "When to remove a setup step",
+        "source_url": "https://example.com/setup-step",
+        "snippet": "Remove the setup step only for returning teams whose data import has already completed. For first-time teams, retain the step until they confirm a successful import; skipping it can hide missing data. This guidance does not apply to teams using manual entry."
+      }
+    ],
+    "review": [
+      "Do not recommend removing setup for all teams; retain returning teams AND completed import if recommending removal.",
+      "Do not turn the first-time-team condition or the manual-entry exception into the opposite advice."
+    ]
+  },
+  {
+    "id": "uncertain-effect",
+    "prompt": "Search for activation experiments. In one sentence, what did the study establish about the checklist's impact?",
+    "results": [
+      {
+        "title": "Checklist pilot results",
+        "source_url": null,
+        "snippet": "Activation was 18% higher in the checklist cohort, but participants chose their own cohort and the sample was small. The study cannot establish that the checklist caused the increase. A randomized follow-up is planned; its results are not available."
+      }
+    ],
+    "review": [
+      "Distinguish the observed association from causation; do not say the checklist proved or caused an 18% improvement.",
+      "Do not invent results from the planned follow-up."
+    ]
+  },
+  {
+    "id": "unanswered-question",
+    "prompt": "Search the interview. Which three activation tactics did the guest recommend? Use only the returned snippet.",
+    "results": [
+      {
+        "title": "An interview about first-run experiences",
+        "source_url": "https://example.com/interview",
+        "snippet": "Host: Would reminders, tutorials, and rewards be your top three activation tactics? Guest: I would not assume that. Before choosing tactics we need to understand... [excerpt ends]"
+      }
+    ],
+    "review": [
+      "Say the excerpt does not supply the guest's three recommendations.",
+      "Do not attribute the host's proposed reminders, tutorials and rewards to the guest or complete the unfinished answer."
+    ]
+  },
+  {
+    "id": "conflicting-records",
+    "prompt": "Search for account setup advice. Summarize what each source recommends and whether they agree.",
+    "results": [
+      {
+        "title": "A recommendation for individual users",
+        "source_url": "https://example.com/individuals",
+        "snippet": "For individual users, let them explore a sample before requiring account creation. This recommendation was not evaluated for managed company accounts."
+      },
+      {
+        "title": "A recommendation for managed accounts",
+        "source_url": "https://example.com/managed",
+        "snippet": "For managed company accounts, require administrator approval before enabling exploration. We did not study individual users."
+      }
+    ],
+    "review": [
+      "Keep explore-first advice scoped to individuals and approval-first advice scoped to managed accounts, with correct source links.",
+      "Explain the different populations rather than inventing a universal agreement or a direct contradiction for the same users."
+    ]
+  },
+  {
+    "id": "limited-search-coverage",
+    "prompt": "Search the audit notes. Did every account pass the new migration?",
+    "results": [
+      {
+        "title": "Migration audit sample",
+        "source_url": null,
+        "snippet": "We checked 12 volunteer accounts in the North region and found no missing records in those accounts. Other regions and non-volunteer accounts were not checked. We have not established the result for every account."
+      }
+    ],
+    "review": [
+      "Report the observed result only for the 12 checked volunteer accounts in the North region.",
+      "Say the remaining accounts are untested or unknown; do not claim all accounts passed or that unchecked accounts failed."
+    ]
+  }
+]

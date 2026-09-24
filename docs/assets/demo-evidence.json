@@ -1,0 +1,22 @@
+{
+  "package": "0.2.0-rc.1",
+  "evidence": "synthetic MCP fixture; local CLI; no model or real-host acceptance",
+  "good": {
+    "fail": 0,
+    "warn": 1,
+    "info": 4,
+    "pass": 24
+  },
+  "intentionalFailure": {
+    "rule": "directory/title-and-hints",
+    "severity": "fail",
+    "target": "list_notes",
+    "source": "§9",
+    "message": "no applicable hint (readOnlyHint: true for read tools, destructiveHint for write tools)",
+    "hint": "These drive auto-permissions in Claude: read-only tools run without per-call confirmation; destructive tools always prompt."
+  },
+  "exitCodes": [
+    0,
+    1
+  ]
+}

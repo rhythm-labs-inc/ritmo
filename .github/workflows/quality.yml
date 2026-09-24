@@ -1,0 +1,30 @@
+name: Public toolkit quality
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  toolkit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      RITMO_NO_KEYCHAIN: '1'
+      RITMO_OPENAI_API_KEY: ''
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.23.2'
+          cache: npm
+      - run: npm ci
+      - run: npm run ci:quality
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: toolkit-verification
+          path: |
+            artifacts/
+            RELEASE-CONTENTS.json

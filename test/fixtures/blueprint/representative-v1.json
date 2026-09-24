@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "id": "notes-example",
+  "revision": "fixture-1",
+  "intent": {
+    "owner": {
+      "name": "Example team",
+      "kind": "team"
+    },
+    "audience": [
+      "Developers trying synthetic notes"
+    ],
+    "use_cases": [
+      {
+        "id": "read-notes",
+        "description": "Read synthetic notes.",
+        "success_measure": "Returns two example notes."
+      }
+    ],
+    "business_model": {
+      "model": "free",
+      "description": "Local fixture only."
+    },
+    "exclusions": [
+      "No external account or production data."
+    ]
+  },
+  "product_contract": {
+    "tools": [
+      {
+        "name": "list_notes",
+        "title": "List notes",
+        "description": "Read synthetic notes.",
+        "input_schema": {
+          "type": "object",
+          "properties": {}
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "openWorldHint": false
+        }
+      }
+    ],
+    "ui_resources": [],
+    "skills": [],
+    "supported_hosts": [
+      "mcp-apps"
+    ]
+  },
+  "data_security": {
+    "data_classification": [
+      "public"
+    ],
+    "integrations": [],
+    "permissions": [],
+    "sensitive_actions": [],
+    "egress_boundaries": []
+  },
+  "identity": {
+    "authentication": {
+      "pattern": "none",
+      "credential_references": []
+    },
+    "scopes": [],
+    "entitlement_model": "No account.",
+    "test_accounts": [],
+    "account_states": [
+      "anonymous"
+    ]
+  },
+  "quality": {
+    "evaluation": {
+      "model": "gpt-4o-mini",
+      "locale": "en-US",
+      "timezone": "UTC"
+    },
+    "interaction_tests": [
+      {
+        "id": "read-notes",
+        "class": "direct",
+        "prompt": "Show notes",
+        "expected_outcome": "Lists notes",
+        "expected_tools": [
+          "list_notes"
+        ]
+      }
+    ],
+    "contract_checks": [],
+    "golden_prompts": []
+  },
+  "delivery": {
+    "source": {
+      "kind": "manual",
+      "locator": "Synthetic fixture",
+      "revision": "fixture-1"
+    },
+    "environments": [
+      {
+        "name": "local",
+        "deploy_target": "local fixture",
+        "server_url": "http://127.0.0.1:1/mcp",
+        "secret_references": []
+      }
+    ],
+    "rollback": {
+      "strategy": "Stop fixture."
+    }
+  },
+  "review_evidence": {
+    "listing": {
+      "name": "Notes example",
+      "description": "Synthetic fixture.",
+      "icon": "./icon.svg"
+    },
+    "screenshots": [],
+    "reviewer_cases": [],
+    "real_host_result": {
+      "status": "not-run"
+    }
+  },
+  "policy_provenance": {
+    "bundle": {
+      "id": "fixture-policy",
+      "version": "1"
+    },
+    "rules": [
+      {
+        "id": "tool/annotations-present",
+        "source": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools",
+        "verified_at": "2026-09-13T00:00:00Z",
+        "confidence": "unverified",
+        "applicability": "uncertain",
+        "implementation_version": "fixture"
+      }
+    ]
+  }
+}

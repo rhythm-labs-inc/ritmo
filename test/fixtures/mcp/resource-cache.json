@@ -1,0 +1,6 @@
+{
+  "missing": {"contents":[{"uri":"ui://widget/example.html","mimeType":"text/html;profile=mcp-app","text":"<html>Example</html>"}]},
+  "valid": {"ttlMs":0,"cacheScope":"private","contents":[{"uri":"ui://widget/example.html","text":"<html>Example</html>","_meta":{"private_fixture":"do-not-report"}}]},
+  "misplaced": {"contents":[{"uri":"ui://widget/example.html","ttlMs":0,"cacheScope":"private","_meta":{"ttlMs":0,"cacheScope":"private"}}]},
+  "invalid": {"ttlMs":-1,"cacheScope":"shared","contents":[]}
+}
