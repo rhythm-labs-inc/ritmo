@@ -2,7 +2,7 @@
 
 Rhythm Labs Inc. maintains the `@rhythm-labs-inc/ritmo` package and the [public repository](https://github.com/rhythm-labs-inc/ritmo).
 
-**Current status — September 22, 2026:** `0.2.0-rc.1` is in preparation. The public repository exists with Issues and private vulnerability reporting enabled, but it has no source commits or releases yet. The npm package is unpublished. Update this status when publication is complete.
+**Current status — September 24, 2026:** the toolkit source is public on GitHub, and the initial public quality workflow passed. npm publication of `@rhythm-labs-inc/ritmo@0.2.0-rc.1` is still pending. Source installation is available now; update this status when the npm package is published.
 
 ## Prerequisites
 

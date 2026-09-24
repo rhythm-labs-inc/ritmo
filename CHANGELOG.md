@@ -2,7 +2,7 @@
 
 ## 0.2.0-rc.1 — in preparation
 
-The first open-source release is being prepared under `@rhythm-labs-inc/ritmo`. Source and npm publication are not complete.
+The open-source toolkit source is available on [GitHub](https://github.com/rhythm-labs-inc/ritmo). npm publication of `@rhythm-labs-inc/ritmo@0.2.0-rc.1` is still pending; use the [source installation guide](docs/installation.md#source-checkout).
 
 **Included in this release**
 

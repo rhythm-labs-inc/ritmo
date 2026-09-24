@@ -2,7 +2,7 @@
 
 Use Node **22.23.2 or newer**. Ritmo runs as a CLI and local browser toolkit.
 
-**Release status:** the first release, `@rhythm-labs-inc/ritmo@0.2.0-rc.1`, is still in preparation. The public repository exists, but source and npm publication are not complete. Until then, use the supplied source checkout. The unscoped npm package `ritmo` is unrelated.
+**Release status:** source is available on [GitHub](https://github.com/rhythm-labs-inc/ritmo). npm publication of `@rhythm-labs-inc/ritmo@0.2.0-rc.1` is still pending. Install from the public source checkout or build a tarball using the instructions below. The unscoped npm package `ritmo` is unrelated.
 
 ## Source checkout
 
