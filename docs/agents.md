@@ -17,7 +17,7 @@ npm ci
 npm run build:all
 ```
 
-Run `npm link` for a global command if that fits the user's setup, or invoke `node /absolute/path/to/ritmo/bin/run.js`. Source is available on [GitHub](https://github.com/rhythm-labs-inc/ritmo); clone the public repository for the source setup above. npm publication is still pending. See [installation](installation.md).
+Run `npm link` for a global command if that fits the user's setup, or invoke `node /absolute/path/to/ritmo/bin/run.js`. Source is available on [GitHub](https://github.com/rhythm-labs-inc/ritmo); clone the public repository for the source setup above. The published release candidate can also be installed with `npm install -g @rhythm-labs-inc/ritmo@0.2.0-rc.1`. See [installation](installation.md).
 
 Return to the user's app folder. Reuse its configuration, or create one with the actual server URL:
 
