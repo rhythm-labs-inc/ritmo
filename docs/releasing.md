@@ -2,7 +2,9 @@
 
 Rhythm Labs Inc. maintains the `@rhythm-labs-inc/ritmo` package and the [public repository](https://github.com/rhythm-labs-inc/ritmo).
 
-**Current status — September 24, 2026:** the toolkit source is public on GitHub, and the initial public quality workflow passed. npm publication of `@rhythm-labs-inc/ritmo@0.2.0-rc.1` is still pending. Source installation is available now; update this status when the npm package is published.
+**Current status — September 24, 2026:** `@rhythm-labs-inc/ritmo@0.2.0-rc.1` is published on [npm](https://www.npmjs.com/package/@rhythm-labs-inc/ritmo) and as a [GitHub prerelease](https://github.com/rhythm-labs-inc/ritmo/releases/tag/v0.2.0-rc.1), with the tarball and `SHA256SUMS` attached. See [installation](installation.md#install-the-release-candidate).
+
+The npm archive and GitHub asset match the verified candidate SHA-256: `1a6144fb2adf6ebbbb35edba5ca56744c57a12e7b70b8558f2d735d46fe56c0a`. Both `next` and `latest` currently resolve to the RC; attempts to remove `latest` returned a registry error. Default installation therefore also selects the RC. Use the exact version when recording acceptance evidence.
 
 ## Prerequisites
 

@@ -2,15 +2,28 @@
 
 Use Node **22.23.2 or newer**. Ritmo runs as a CLI and local browser toolkit.
 
-**Release status:** source is available on [GitHub](https://github.com/rhythm-labs-inc/ritmo). npm publication of `@rhythm-labs-inc/ritmo@0.2.0-rc.1` is still pending. Install from the public source checkout or build a tarball using the instructions below. The unscoped npm package `ritmo` is unrelated.
+**Release status:** [`0.2.0-rc.1`](https://github.com/rhythm-labs-inc/ritmo/releases/tag/v0.2.0-rc.1) is published as a release candidate on [npm](https://www.npmjs.com/package/@rhythm-labs-inc/ritmo). The unscoped npm package `ritmo` is unrelated.
+
+## Install the release candidate
+
+```bash
+npm install -g @rhythm-labs-inc/ritmo@0.2.0-rc.1
+ritmo --help
+```
+
+Run subsequent commands from your app's project folder. For a project-local installation, omit `-g` and invoke `npx --no-install ritmo`.
+
+At publication, both `next` and `latest` resolve to this release candidate. Pin the version above for reproducible installation; `@next` follows future prereleases. The GitHub release also includes the tested tarball and `SHA256SUMS`.
 
 ## Source checkout
 
 **Build and link the CLI**
 
-From the checkout root:
+Clone the public repository and build from its root:
 
 ```bash
+git clone https://github.com/rhythm-labs-inc/ritmo.git
+cd ritmo
 npm ci
 npm run build:all
 npm link
