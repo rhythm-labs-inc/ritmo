@@ -36,6 +36,8 @@ Keep the source commit, lockfile, source manifest, release manifest, test result
 
 Get release-owner approval for the exact version and contents. Use an immutable version tag, such as `v0.2.0-rc.1`, and the npm `next` tag for a prerelease. Do not overwrite published versions or move published tags.
 
+Prepare a draft GitHub release, attach the verified tarball and `SHA256SUMS`, and check all assets before publishing. Repository release immutability protects future published releases, so their assets cannot be added or replaced afterward. The `v*` tag ruleset also prevents updating or deleting existing release tags. Publish corrections under a new version.
+
 Publish release notes with installation instructions, known limitations, and migration guidance. Check that source, package, issue links, and CI results are accessible. Update the release-status wording in the docs after publication.
 
 ## Downstream compatibility
