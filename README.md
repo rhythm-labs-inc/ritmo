@@ -28,14 +28,14 @@ All of this helps you prepare your app for submission to OpenAI.
 
 Get started with the steps below or simply [give Ritmo to your agent](#give-ritmo-to-your-agent) building your MCP-powered app
 
-**Install the release candidate (Node 22.23.2 or newer)**
+**Install Ritmo (Node 22.23.2 or newer)**
 
 ```bash
 npm install -g @rhythm-labs-inc/ritmo@0.2.0-rc.1
 ritmo --help
 ```
 
-This pins the published release candidate. Both npm `next` and `latest` currently point to it. For source development or tarball installation, see the [installation guide](docs/installation.md).
+For other installation options, see the [installation guide](docs/installation.md).
 
 **Connect your app's MCP server**
 
