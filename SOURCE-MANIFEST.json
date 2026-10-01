@@ -1030,7 +1030,7 @@
     },
     {
       "path": "vitest.config.ts",
-      "sha256": "98864640861e268f2fe9031703c5973d098769f979d4af7f0dc74e13daa405e9"
+      "sha256": "24fa47b95e364b81de85b506aa2af008281d84b3ca107a10b95fb2110565322a"
     }
   ],
   "package_files": [
@@ -1056,11 +1056,11 @@
   "dependencies": {
     "@fastify/static": "^10.1.3",
     "@modelcontextprotocol/sdk": "^1.26.0",
-    "@oclif/core": "^4",
+    "@oclif/core": "^5",
     "fastify": "^5.7.4",
     "js-yaml": "^4.1.0",
     "keytar": "^7.9.0",
-    "open": "11.0.0",
+    "open": "11.0.4",
     "openai": "^6.22.0",
     "zod": "^3.24.0"
   },
@@ -1071,7 +1071,7 @@
     "@types/node": "^20",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.4",
+    "@vitejs/plugin-react": "^6.1.1",
     "eslint": "^10.0.1",
     "oclif": "^4",
     "react": "^19.2.4",
@@ -1080,7 +1080,7 @@
     "remark-gfm": "4.0.1",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-eslint": "^8.71.0",
-    "vite": "^7.3.1",
+    "vite": "^8.3.1",
     "vitest": "^4.1.11",
     "@typescript/native": "npm:typescript@^7.0.2"
   },
