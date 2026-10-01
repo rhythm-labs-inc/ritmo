@@ -18,6 +18,8 @@ npm run ci:quality
 
 The automated checks use local fixtures and do not need a model API key.
 
+The build uses TypeScript 7 through the `@typescript/native` npm alias. ESLint uses the TypeScript 6 compatibility API through the `typescript` alias, following [Microsoft's side-by-side migration guidance](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/#running-side-by-side-with-typescript-6-0). Keep both aliases when updating the compiler: TypeScript 7 does not expose the JavaScript API required by TypeScript ESLint. `npm run build` invokes the TypeScript 7 `tsc`; `tsc6` is available for tooling compatibility.
+
 **Make and test your change**
 
 - Keep command parsing and output in `src/commands`; put reusable logic in `src/lib`.
