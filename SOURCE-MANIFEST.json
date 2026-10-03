@@ -86,7 +86,7 @@
     },
     {
       "path": "docs/architecture.md",
-      "sha256": "09ecef66e1e71781cfad004a169443c555c9ff369cc795cd3290764b75f74ea7"
+      "sha256": "58a9be1ada8253ef4daff11df5fabc23c6628cfc8df8a74d73a78049f0aebfc3"
     },
     {
       "path": "docs/assets/cli-session.svg",
@@ -99,6 +99,10 @@
     {
       "path": "docs/assets/demo-evidence.json",
       "sha256": "ed5df8598fa8b6cf01fbb288cc3fbbda8ffbb7512c7e6d5f63f865903a678709"
+    },
+    {
+      "path": "docs/assets/events-health.png",
+      "sha256": "e82d9755b3757372087c4bb38ced16aaa1d9ec0fc8576a8bbf1b3840409f2518"
     },
     {
       "path": "docs/assets/ritmo-logo-dark.svg",
@@ -146,7 +150,7 @@
     },
     {
       "path": "docs/simulation.md",
-      "sha256": "9a601e293ab0e1169a88242b7f147eb2e143f6c8160c6955a0f3655d561c2495"
+      "sha256": "472a0fbb4ba2ed00cd331ec318ec787e7655a17718d44c69e6815af2860f4239"
     },
     {
       "path": "docs/troubleshooting.md",
@@ -638,7 +642,7 @@
     },
     {
       "path": "src/ui/App.tsx",
-      "sha256": "59ab8092a28ddb2ed7d91cf019201d28851df24279b0cef695fba92d8be89eb1"
+      "sha256": "af881181ed74ee158b1cef74ee707eb67fcff8b0504bac7547b8b63f09a2e3fa"
     },
     {
       "path": "src/ui/api/client.ts",
@@ -662,7 +666,7 @@
     },
     {
       "path": "src/ui/components/HealthPanel.tsx",
-      "sha256": "b54bc7a1b3d4825b4733088441e9acd41c1b6487ea250fbcde2b4ef514041406"
+      "sha256": "33e006b9d756b76daa61617694bc986713c9e7f32d4a00e3d14fdbba18257a6b"
     },
     {
       "path": "src/ui/components/HostControls.tsx",
@@ -690,7 +694,7 @@
     },
     {
       "path": "src/ui/components/WidgetDiagnostics.tsx",
-      "sha256": "9cd5e46134b9cf3b19773023a51362e2005192200eaa613372a532823d19caca"
+      "sha256": "9fbb467d8aac99328321da57d7ca40e3e214e8cb42f22546dc1f3dbf118c4727"
     },
     {
       "path": "src/ui/components/WidgetFrame.tsx",
@@ -718,7 +722,7 @@
     },
     {
       "path": "src/ui/styles.css",
-      "sha256": "09a61a59bb211dc52d9632912a2affbffad088a7349b73e73ae69e9f2bb70a6c"
+      "sha256": "96d837cd60589a08cb8aca84a25bce5297df257f5d21758827f9e3c3cf723955"
     },
     {
       "path": "test/commands/auth.test.ts",
@@ -967,6 +971,10 @@
     {
       "path": "test/test-runner/reporters.test.ts",
       "sha256": "a52fcb0dd59d797e18d65e94938c1c8fb9b1d6256cad8aa9c2ca92b82a2295cd"
+    },
+    {
+      "path": "test/ui/health-panel.test.ts",
+      "sha256": "3c1e8fee8eca54d110ca758c8d86e5d1472ea9b651cd5936ed294588ded037cf"
     },
     {
       "path": "test/ui/message-thread.test.ts",

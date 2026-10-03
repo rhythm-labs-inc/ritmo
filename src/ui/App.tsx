@@ -217,8 +217,10 @@ export function App() {
               </>
             )}
             {activeInspectorTab === 'diagnostics' && (
-              <><HealthPanel health={session.health} />
-              <WidgetDiagnostics events={session.widgetDiagnostics ?? []} /></>
+              <div className="events-panel" data-theme={hostOptions.theme}>
+                <HealthPanel health={session.health} />
+                <WidgetDiagnostics events={session.widgetDiagnostics ?? []} />
+              </div>
             )}
           </div>
         </div>
