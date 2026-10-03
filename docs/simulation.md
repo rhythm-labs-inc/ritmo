@@ -69,6 +69,10 @@ ritmo widget examples/notes/widget.html --data examples/notes/states.json --host
 
 Choose notes/empty, light/dark, and desktop/mobile. Inspect bridge events while you interact. Files are watched for changes. Replace the paths with your own HTML and fixture JSON to test your widget.
 
+The **Events** tab shows observed health above bridge events, with aligned **Passed**, **Failed**, and **Not tested** labels. Endpoint/revision details and retained failures stay readable at narrow widths. The panel follows the selected host theme and keeps your scroll position as new events arrive. Local checks do not establish real-host rendering or approval.
+
+[![Events tab showing observed health and bridge events in dark mode](assets/events-health.png)](assets/events-health.png)
+
 For a resource served by MCP, pass its `ui://` URI and `--server URL`. Calls use canned results from the fixture when available; otherwise they can reach the configured server.
 
 Use `--no-open` to print the URL without opening a browser, `--no-clip` to disable height clipping, or `--no-echo` to disable state echo. See [widget fixtures](config.md#widget-fixtures) for the data format.

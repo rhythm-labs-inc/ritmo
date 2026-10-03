@@ -634,21 +634,65 @@ html, body, #root {
 }
 
 /* Widget diagnostics panel */
+.events-panel {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+/* Diagnostics follow the selected host theme; the surrounding shell stays dark. */
+.events-panel[data-theme='light'] {
+  --color-surface: var(--ritmo-l-surface);
+  --color-text: #202925;
+  --color-text-muted: #53645e;
+  --color-border: #dce3df;
+  --color-success: #237657;
+  --color-failure: #b53729;
+  --color-error: var(--color-failure);
+  --color-error-bg: #fcf0ed;
+  --color-warn: #806213;
+  --color-info: #3a608d;
+  --color-accent: var(--color-success);
+  --color-bg-subtle: #f2f5f3;
+  color-scheme: light;
+}
+
+.health-panel {
+  flex: none;
+  min-width: 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.health-body { padding: 16px; }
+.health-context { display: grid; gap: 10px; margin-bottom: 16px; }
+.health-context dt { color: var(--color-text-muted); font-size: 11px; }
+.health-context dd { font-family: var(--font-mono); font-size: 12px; overflow-wrap: anywhere; }
+.health-stages { border: 1px solid var(--color-border); border-radius: var(--border-radius); overflow: hidden; }
+.health-stage { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 12px; font-size: 13px; }
+.health-stage + .health-stage { border-top: 1px solid var(--color-border); }
+.health-stage dt { overflow-wrap: anywhere; }
+.health-status { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-width: 92px; padding: 2px 8px; border-radius: var(--ritmo-radius-sm); font-size: 11px; font-weight: 600; white-space: nowrap; }
+.health-status--pass { color: var(--color-success); background: color-mix(in srgb, var(--color-success) 10%, var(--color-surface)); }
+.health-status--fail { color: var(--color-failure); background: var(--color-error-bg); }
+.health-status--not-tested { color: var(--color-text-muted); background: var(--color-bg-subtle); }
+.health-note { margin-top: 12px; color: var(--color-text-muted); font-size: 12px; line-height: 1.5; }
+.health-failures { margin-top: 16px; font-size: 12px; overflow-wrap: anywhere; }
+.health-failures h4 { font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+.health-failures ul { list-style: none; display: grid; gap: 8px; }
+.health-failures li { padding: 10px 12px; border-left: 2px solid var(--color-failure); background: var(--color-error-bg); }
+.health-failures strong { color: var(--color-failure); }
+.health-failures code { display: block; font-family: var(--font-mono); font-size: 11px; margin-block: 4px; }
+
 .widget-diagnostics {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  overflow: hidden;
-}
-
-.widget-diagnostics-empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  min-width: 0;
 }
 
 .diagnostics-placeholder {
+  padding: 20px 16px;
   color: var(--color-text-muted);
   font-size: 13px;
 }
@@ -668,7 +712,7 @@ html, body, #root {
 }
 
 .diagnostics-count {
-  background: var(--ritmo-overlay);
+  background: var(--color-bg-subtle);
   border-radius: var(--ritmo-radius-sm);
   font-family: var(--font-mono);
   padding: 2px 6px;
@@ -676,8 +720,6 @@ html, body, #root {
 }
 
 .diagnostics-list {
-  flex: 1;
-  overflow-y: auto;
   padding: 8px 12px;
 }
 
@@ -706,7 +748,8 @@ html, body, #root {
 }
 
 .diagnostic-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 6px;
 }
@@ -719,11 +762,8 @@ html, body, #root {
 .diagnostic-method {
   font-family: var(--font-mono);
   font-size: 11px;
-  flex: 1;
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 .diagnostic-duration {
@@ -733,6 +773,7 @@ html, body, #root {
 }
 
 .diagnostic-time {
+  grid-column: 2 / -1;
   color: var(--color-text-muted);
   font-size: 10px;
   flex-shrink: 0;
@@ -746,6 +787,7 @@ html, body, #root {
 }
 
 .diagnostic-error {
+  overflow-wrap: anywhere;
   color: var(--color-failure);
   font-size: 11px;
   margin-top: 2px;

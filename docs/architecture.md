@@ -22,6 +22,8 @@ Both the simulator and test runner call `runHeadlessLoop` in `src/lib/simulate/h
 
 Tool-result `_meta` is reserved for widgets and stays out of model messages. Source-reference guidance and link checks live in `source-fidelity.ts`; model usage and cost estimates live in `usage.ts`. The browser renders assistant Markdown through `AssistantMarkdown`, with raw HTML disabled.
 
+`HealthPanel` presents observed stage states and retained failures without changing health aggregation. `App` places it with `WidgetDiagnostics` in a single scrollable Events panel, styled for the selected host theme. Appending bridge events does not move the reader's scroll position.
+
 ## Versioned consumption
 
 The package exports a small engine API through `src/lib/core/index.ts`:

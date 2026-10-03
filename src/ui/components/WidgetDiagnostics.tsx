@@ -1,4 +1,3 @@
-import {useEffect, useRef} from 'react'
 import type {BridgeDiagnosticEvent} from '../api/client'
 
 interface WidgetDiagnosticsProps {
@@ -22,31 +21,18 @@ const KIND_COLORS: Record<string, string> = {
 }
 
 export function WidgetDiagnostics({events}: WidgetDiagnosticsProps) {
-  const bottomRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({behavior: 'smooth'})
-  }, [events.length])
-
-  if (events.length === 0) {
-    return (
-      <div className="widget-diagnostics widget-diagnostics-empty">
-        <p className="diagnostics-placeholder">No widget events yet</p>
-      </div>
-    )
-  }
-
   return (
-    <div className="widget-diagnostics">
-      <div className="diagnostics-header">
-        <span>Bridge Events</span>
+    <section className="widget-diagnostics" aria-label="Bridge events">
+      <h3 className="diagnostics-header">
+        <span>Bridge events</span>
         <span className="diagnostics-count">{events.length}</span>
-      </div>
+      </h3>
+      {events.length === 0 && <p className="diagnostics-placeholder">No widget events yet</p>}
       <div className="diagnostics-list">
         {events.map((evt) => (
           <div key={evt.seq} className={`diagnostic-event diagnostic-event-${evt.kind}`}>
             <div className="diagnostic-row">
-              <span className="diagnostic-icon">{KIND_ICONS[evt.kind] ?? '•'}</span>
+              <span className="diagnostic-icon" aria-label={evt.kind}>{KIND_ICONS[evt.kind] ?? '•'}</span>
               <span
                 className="diagnostic-method"
                 style={{color: KIND_COLORS[evt.kind] ?? 'inherit'}}
@@ -66,8 +52,7 @@ export function WidgetDiagnostics({events}: WidgetDiagnosticsProps) {
             )}
           </div>
         ))}
-        <div ref={bottomRef} />
       </div>
-    </div>
+    </section>
   )
 }
