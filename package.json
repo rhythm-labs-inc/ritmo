@@ -109,7 +109,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.1.1",
     "eslint": "^10.0.1",
-    "oclif": "^4",
+    "oclif": "^6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-markdown": "10.1.0",
