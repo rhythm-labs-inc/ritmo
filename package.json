@@ -94,7 +94,7 @@
     "@modelcontextprotocol/sdk": "^1.26.0",
     "@oclif/core": "^5",
     "fastify": "^5.7.4",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^5.4.2",
     "keytar": "^7.9.0",
     "open": "11.0.4",
     "openai": "^6.22.0",
