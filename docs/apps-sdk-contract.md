@@ -74,6 +74,8 @@ Sources: [MCP HTTP authorization](https://modelcontextprotocol.io/specification/
 
 [docs:submission] The documented workflow starts with a ZIP upload, then separate metadata/skills and MCP checks. Package-managed fields require an updated ZIP; reviewer access is entered separately in Review details. Review submission requires policy attestations, and approval is followed by an explicit publish action. This source refresh is automated documentation evidence, not human policy verification or a completed end-to-end submission test. Human verification remains pending.
 
+[docs:maintenance] The [published-version replacement guidance](https://developers.openai.com/plugins/deploy/app-review#changing-published-metadata-versions-and-removing-the-plugin), retrieved by the automated monitor on October 12, 2026, says to keep the current version published while its replacement is reviewed, then publish the approved replacement directly. Publishing replaces the current version; removing it from publication first is unnecessary. Removing the published version without a replacement makes the plugin unavailable. This supersedes the earlier upstream instruction to remove the current version before publishing an approved replacement; human policy verification and actual-host acceptance remain pending.
+
 [implementation] `package` writes draft Markdown and JSON. When submission cases exist, it also writes a test suite: positive checks require the first listed tool, and negative checks forbid all calls. It does not copy media or skill bundles, verify written expected results, run tests, upload materials, or decide approval. Review the files and strengthen generated assertions before replay.
 
 ## 9. Portable MCP Apps and Claude review
